@@ -1,0 +1,51 @@
+{
+  "name": "getodds-mcp",
+  "version": "0.1.0",
+  "description": "MCP server (stdio) for the GetOdds sports odds API: DraftKings, FanDuel and BetRivers prices plus PrizePicks, Underdog and Pick6 lines. Keyless board tools work with no account.",
+  "mcpName": "com.getoddsapi/getodds",
+  "type": "module",
+  "bin": {
+    "getodds-mcp": "./server.mjs"
+  },
+  "main": "./server.mjs",
+  "files": [
+    "server.mjs",
+    "tools.mjs",
+    "README.md",
+    "LICENSE",
+    "server.json"
+  ],
+  "scripts": {
+    "test": "node --test test.mjs",
+    "start": "node server.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "zod": "^4.3.6"
+  },
+  "keywords": [
+    "mcp",
+    "model context protocol",
+    "sports odds api",
+    "odds api",
+    "draftkings",
+    "fanduel",
+    "prizepicks",
+    "underdog",
+    "claude",
+    "cursor"
+  ],
+  "author": "Stunning Couches LLC <ops@getoddsapi.com>",
+  "license": "MIT",
+  "homepage": "https://getoddsapi.com/mcp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/getoddsapi/getodds-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/getoddsapi/getodds-mcp/issues"
+  }
+}

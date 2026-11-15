@@ -1,0 +1,36 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.getoddsapi/getodds",
+  "title": "GetOdds",
+  "description": "US sports odds: DraftKings, FanDuel, BetRivers prices and PrizePicks, Underdog, Pick6 lines.",
+  "version": "0.1.0",
+  "websiteUrl": "https://getoddsapi.com/mcp",
+  "repository": {"url": "https://github.com/getoddsapi/getodds-mcp", "source": "github"},
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "getodds-mcp",
+      "version": "0.1.0",
+      "transport": {"type": "stdio"},
+      "environmentVariables": [
+        {
+          "name": "GETODDS_API_KEY",
+          "description": "Free key from https://getoddsapi.com/sign-up. Optional: the board tools work without it.",
+          "isRequired": false,
+          "isSecret": true,
+          "format": "string"
+        }
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://getoddsapi.com/api/mcp",
+      "headers": [
+        {"name": "Authorization", "description": "Bearer <your GetOdds key>", "isRequired": true, "isSecret": true}
+      ]
+    }
+  ]
+}

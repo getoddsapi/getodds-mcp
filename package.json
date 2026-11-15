@@ -1,6 +1,6 @@
 {
   "name": "getodds-mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "MCP server (stdio) for the GetOdds sports odds API: DraftKings, FanDuel and BetRivers prices plus PrizePicks, Underdog and Pick6 lines. Keyless board tools work with no account.",
   "mcpName": "com.getoddsapi/getodds",
   "type": "module",

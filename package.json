@@ -5,7 +5,7 @@
   "mcpName": "com.getoddsapi/getodds",
   "type": "module",
   "bin": {
-    "getodds-mcp": "./server.mjs"
+    "getodds-mcp": "server.mjs"
   },
   "main": "./server.mjs",
   "files": [

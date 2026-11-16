@@ -1,0 +1,367 @@
+{
+  "author": "Stunning Couches LLC",
+  "description": "MCP server (stdio) for the GetOdds sports odds API: DraftKings, FanDuel and BetRivers prices plus PrizePicks, Underdog and Pick6 lines. Keyless board tools work with no account.",
+  "homepage": "https://getoddsapi.com/mcp",
+  "identifier": "getoddsapi-getodds-mcp",
+  "name": "GetOdds",
+  "prompts": [],
+  "resources": [],
+  "tags": [
+    "mcp",
+    "model context protocol",
+    "sports odds api",
+    "odds api",
+    "draftkings",
+    "fanduel",
+    "prizepicks",
+    "underdog",
+    "claude",
+    "cursor"
+  ],
+  "tools": [
+    {
+      "name": "get_public_board",
+      "title": "Public odds board for one sport (no key)",
+      "description": "DraftKings moneyline, spread and total prices (read through ESPN odds data) for one sport, with the capture time of every row. No API key, no credits; cached up to five minutes, so check observed_at before treating a price as current.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sport": {
+            "type": "string",
+            "enum": [
+              "nfl",
+              "nba",
+              "nhl",
+              "college-football",
+              "soccer-odds-api"
+            ]
+          }
+        },
+        "required": [
+          "sport"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "get_odds_board",
+      "title": "Mixed upcoming-games odds board (no key)",
+      "description": "The next DraftKings Sportsbook (New Jersey) prices across leagues, as shown on the getoddsapi.com homepage. No API key, no credits.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "get_sandbox_odds",
+      "title": "Keyless sandbox odds (no key)",
+      "description": "Keyless sandbox read of stored odds for trying request shapes before signing up. Rate-limited per IP. Depends on the /api/v1/sandbox endpoints; if they are not live yet the tool says so and suggests get_public_board.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sport": {
+            "type": "string",
+            "enum": [
+              "NFL",
+              "NBA",
+              "NHL",
+              "NCAAF",
+              "NCAAB",
+              "MLB",
+              "EPL",
+              "MLS"
+            ]
+          },
+          "market": {
+            "type": "string",
+            "enum": [
+              "moneyline",
+              "spread",
+              "total"
+            ]
+          },
+          "limit": {
+            "default": 10,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 50
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "create_free_key",
+      "title": "Create a free GetOdds key by email",
+      "description": "Create a free-tier key (1,000 requests a UTC day, 60 a minute, no card) for the user's own email address. Only call this when the user asked for a key and gave their email. The key is shown once: tell the user to store it as GETODDS_API_KEY. Depends on POST /api/v1/agent/signup.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "maxLength": 254,
+            "format": "email",
+            "pattern": "^(?:[A-Za-z0-9_'+\\-]+\\.)*[A-Za-z0-9_'+\\-]*[A-Za-z0-9_+-]@(?:[A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+          },
+          "agent_name": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "use_case": {
+            "type": "string",
+            "maxLength": 500
+          }
+        },
+        "required": [
+          "email"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "get_odds",
+      "title": "Stored sportsbook odds",
+      "description": "DraftKings (via ESPN) stored game odds by league and market. Set fresh_only to drop rows not captured recently. One credit per successful call.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sport": {
+            "type": "string",
+            "enum": [
+              "NFL",
+              "NBA",
+              "NHL",
+              "NCAAF",
+              "NCAAB",
+              "MLB",
+              "EPL",
+              "MLS"
+            ]
+          },
+          "market": {
+            "type": "string",
+            "enum": [
+              "moneyline",
+              "spread",
+              "total"
+            ]
+          },
+          "event_id": {
+            "type": "string",
+            "pattern": "^[-A-Za-z0-9_:]{1,180}$"
+          },
+          "fresh_only": {
+            "default": true,
+            "type": "boolean"
+          },
+          "limit": {
+            "default": 25,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 200
+          },
+          "offset": {
+            "default": 0,
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "search_events",
+      "title": "Search events by team name",
+      "description": "Literal, case-insensitive team-name search over retained events. Returns source-specific event ids for get_odds and get_line_history.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "q": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 100
+          },
+          "sport": {
+            "type": "string",
+            "enum": [
+              "NFL",
+              "NBA",
+              "NHL",
+              "NCAAF",
+              "NCAAB",
+              "MLB",
+              "EPL",
+              "MLS"
+            ]
+          },
+          "limit": {
+            "default": 25,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 200
+          }
+        },
+        "required": [
+          "q"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "get_line_history",
+      "title": "Retained price changes for an event or offer",
+      "description": "Retained price changes for one event_id or offer_id (DraftKings via ESPN). Not a complete tick history: it holds the changes GetOdds captured.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "event_id": {
+            "type": "string",
+            "pattern": "^[-A-Za-z0-9_:]{1,180}$"
+          },
+          "offer_id": {
+            "type": "string",
+            "pattern": "^[-A-Za-z0-9_:]{1,180}$"
+          },
+          "market": {
+            "type": "string",
+            "enum": [
+              "moneyline",
+              "spread",
+              "total"
+            ]
+          },
+          "limit": {
+            "default": 25,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 200
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "get_pickem_lines",
+      "title": "Pick'em player lines",
+      "description": "Player prop thresholds from PrizePicks, Underdog or DraftKings Pick6 (source=draftkings), or FanDuel. Lines only; pick'em boards have no per-line odds. The key must have the source granted.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "default": "prizepicks",
+            "type": "string",
+            "enum": [
+              "prizepicks",
+              "underdog",
+              "draftkings",
+              "fanduel"
+            ]
+          },
+          "limit": {
+            "default": 25,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 200
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "get_fanduel_markets",
+      "title": "FanDuel native game markets",
+      "description": "FanDuel native markets and selections by league. Filters keep FanDuel exact case. The key needs the fanduel source and FanDuel selected as a bookmaker in the dashboard.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "league": {
+            "type": "string",
+            "enum": [
+              "NFL",
+              "NBA",
+              "NHL",
+              "NCAAF",
+              "NCAAB",
+              "MLB",
+              "EPL",
+              "MLS"
+            ]
+          },
+          "limit": {
+            "default": 25,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    }
+  ],
+  "version": "0.1.1"
+}

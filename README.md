@@ -1,11 +1,17 @@
-# getodds-mcp
+# Sports odds MCP server: getodds-mcp
 
-MCP server (stdio) for the [GetOdds sports odds API](https://getoddsapi.com). It gives Claude, Cursor, VS Code and
+A sports betting odds MCP server for Claude, Cursor, VS Code and any MCP client. Ask an AI agent for current sportsbook odds or pick'em lines; it answers from captured data through getoddsapi.com, with timestamps.
+
+[Website](https://getoddsapi.com/?utm_source=github&utm_medium=readme&utm_campaign=getodds-mcp) | [Docs](https://getoddsapi.com/docs?utm_source=github&utm_medium=readme&utm_campaign=getodds-mcp) | [Free API key](https://getoddsapi.com/sign-up?utm_source=github&utm_medium=readme&utm_campaign=getodds-mcp) | [Pricing](https://getoddsapi.com/pricing?utm_source=github&utm_medium=readme&utm_campaign=getodds-mcp) | [All SDKs](https://getoddsapi.com/sdks?utm_source=github&utm_medium=readme&utm_campaign=getodds-mcp)
+
+Also for getoddsapi.com: [Python: `pip install getodds`](https://github.com/getoddsapi/getodds-python) | [JavaScript: `npm install getoddsapi`](https://github.com/getoddsapi/getodds-js)
+
+MCP server (stdio) for the [GetOdds sports odds API](https://getoddsapi.com/?utm_source=github&utm_medium=readme&utm_campaign=getodds-mcp). It gives Claude, Cursor, VS Code and
 any MCP client tools for DraftKings, FanDuel and BetRivers sportsbook prices and PrizePicks, Underdog and DraftKings
 Pick6 pick'em lines, with the capture time on every row.
 
 Two tools work with no account at all. The rest need a free key (1,000 requests a UTC day, 60 a minute, no card)
-from <https://getoddsapi.com/sign-up>.
+from <https://getoddsapi.com/sign-up?utm_source=github&utm_medium=readme&utm_campaign=getodds-mcp>.
 
 ## Install
 

@@ -1,14 +1,14 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.getoddsapi/getodds",
+  "description": "Odds and props: DraftKings, FanDuel, BetRivers, Pinnacle, Novig, PrizePicks, Underdog, Pick6.",
   "title": "GetOdds",
-  "description": "US sports odds: DraftKings, FanDuel, BetRivers prices and PrizePicks, Underdog, Pick6 lines.",
-  "version": "0.1.1",
-  "websiteUrl": "https://getoddsapi.com/mcp",
   "repository": {
     "url": "https://github.com/getoddsapi/getodds-mcp",
     "source": "github"
   },
+  "version": "0.1.2",
+  "websiteUrl": "https://getoddsapi.com/mcp",
   "packages": [
     {
       "registryType": "npm",
@@ -20,11 +20,10 @@
       },
       "environmentVariables": [
         {
-          "name": "GETODDS_API_KEY",
           "description": "Free key from https://getoddsapi.com/sign-up. Optional: the board tools work without it.",
-          "isRequired": false,
+          "format": "string",
           "isSecret": true,
-          "format": "string"
+          "name": "GETODDS_API_KEY"
         }
       ]
     }
@@ -35,11 +34,27 @@
       "url": "https://getoddsapi.com/api/mcp",
       "headers": [
         {
-          "name": "Authorization",
-          "description": "Bearer <your GetOdds key>",
-          "isRequired": true,
-          "isSecret": true
+          "description": "Bearer <your GetOdds key>. Optional: initialize, tools/list and get_sandbox_odds work without it.",
+          "isRequired": false,
+          "isSecret": true,
+          "name": "Authorization"
         }
+      ]
+    }
+  ],
+  "icons": [
+    {
+      "src": "https://getoddsapi.com/assets/getodds-mark.svg",
+      "mimeType": "image/svg+xml",
+      "sizes": [
+        "any"
+      ]
+    },
+    {
+      "src": "https://getoddsapi.com/assets/getodds-icon-180.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "180x180"
       ]
     }
   ]

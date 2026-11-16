@@ -52,7 +52,7 @@ test('API guidance and Retry-After pass through on errors', async () => {
 
 test('pending sandbox and signup tools explain a 404 instead of failing opaquely', async () => {
   const {calls, fetcher} = recorder(() => new Response('not found', {status: 404}));
-  await assert.rejects(runTool('get_sandbox_odds', {}, {fetcher, env: {}}), {code: 'SANDBOX_NOT_AVAILABLE'});
+  await assert.rejects(runTool('get_sandbox_odds', {sport: 'nba'}, {fetcher, env: {}}), {code: 'SANDBOX_NOT_AVAILABLE'});
   await assert.rejects(runTool('create_free_key', {email: 'dev@company.com'}, {fetcher, env: {}}), {code: 'SIGNUP_NOT_AVAILABLE'});
   assert.equal(calls[1].init.method, 'POST');
   assert.deepEqual(JSON.parse(calls[1].init.body), {email: 'dev@company.com'});

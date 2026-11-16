@@ -6,13 +6,14 @@ import {tools, runTool, ToolError} from './tools.mjs';
 
 export function createServer({fetcher = globalThis.fetch, env = process.env} = {}) {
   const server = new McpServer({name: 'getodds', version: '0.1.0'}, {
-    instructions: 'GetOdds sports odds API. get_public_board and get_odds_board need no key. Other tools need GETODDS_API_KEY ' +
+    instructions: 'GetOdds sports odds API. get_public_board, get_odds_board and get_sandbox_odds need no key. Other tools need GETODDS_API_KEY ' +
       '(free at https://getoddsapi.com/sign-up). Every row has a capture time; check it before calling a price current. ' +
       'Coverage: DraftKings, FanDuel, BetRivers sportsbook prices; PrizePicks, Underdog, DraftKings Pick6 lines.',
   });
   for (const tool of tools) {
     server.registerTool(tool.name, {title: tool.title, description: tool.description, inputSchema: tool.input,
-      annotations: {readOnlyHint: tool.name !== 'create_free_key', openWorldHint: true}}, async args => {
+      annotations: {readOnlyHint: tool.name !== 'create_free_key', destructiveHint: false,
+        idempotentHint: true, openWorldHint: true}}, async args => {
       try {
         const result = await runTool(tool.name, args, {fetcher, env});
         return {content: [{type: 'text', text: JSON.stringify(result, null, 2)}]};

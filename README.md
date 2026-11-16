@@ -52,7 +52,7 @@ Prefer no local process? The same data is on the hosted server `https://getoddsa
 | --- | --- | --- |
 | `get_public_board` | none | DraftKings moneyline, spread, total for nfl, nba, nhl, college-football or soccer-odds-api (cached up to 5 min) |
 | `get_odds_board` | none | Next DraftKings Sportsbook (NJ) prices across leagues |
-| `get_sandbox_odds` | none | Keyless sandbox reads, rate-limited per IP (rolling out: until `/api/v1/sandbox` is live it says so) |
+| `get_sandbox_odds` | none | Real stored DraftKings game lines for one sport (`sport` required), cached up to five minutes, 50 rows, 10 a minute per IP |
 | `create_free_key` | none | Free key for the user's own email (rolling out: until `POST /api/v1/agent/signup` is live it links the sign-up page) |
 | `get_odds` | free key | Stored DraftKings (via ESPN) odds by league, market, event; `fresh_only` on by default |
 | `search_events` | free key | Team-name search returning event ids |

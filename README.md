@@ -1,5 +1,7 @@
 # Sports odds MCP server: getodds-mcp
 
+[![mcptry](https://mcptry.com/badge/com.getoddsapi/getodds)](https://mcptry.com/servers/com.getoddsapi/getodds)
+
 A sports betting odds MCP server for Claude, Cursor, VS Code and any MCP client. Ask an AI agent for current sportsbook odds or pick'em lines; it answers from captured data through getoddsapi.com, with timestamps.
 
 [Website](https://getoddsapi.com/?utm_source=github&utm_medium=readme&utm_campaign=getodds-mcp) | [Docs](https://getoddsapi.com/docs?utm_source=github&utm_medium=readme&utm_campaign=getodds-mcp) | [Free API key](https://getoddsapi.com/sign-up?utm_source=github&utm_medium=readme&utm_campaign=getodds-mcp) | [Pricing](https://getoddsapi.com/pricing?utm_source=github&utm_medium=readme&utm_campaign=getodds-mcp) | [All SDKs](https://getoddsapi.com/sdks?utm_source=github&utm_medium=readme&utm_campaign=getodds-mcp)

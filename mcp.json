@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "getodds": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "getodds-mcp"
+      ],
+      "env": {
+        "GETODDS_API_KEY": "${GETODDS_API_KEY}"
+      }
+    }
+  }
+}

@@ -91,3 +91,9 @@ node server.mjs   # stdio
 
 GetOdds is an independent developer product, not affiliated with any sportsbook. Operated by Stunning Couches LLC.
 MIT licensed.
+
+## Gemini CLI
+
+```sh
+gemini extensions install https://github.com/getoddsapi/getodds-mcp
+```

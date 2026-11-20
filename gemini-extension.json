@@ -1,0 +1,25 @@
+{
+  "name": "getodds-mcp",
+  "version": "0.1.1",
+  "description": "Sports odds for Gemini CLI from GetOdds (getoddsapi.com): live and historical lines and player props across sportsbooks and DFS apps, Kalshi and Polymarket prices, line history and closing lines.",
+  "mcpServers": {
+    "getodds": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "getodds-mcp"
+      ],
+      "env": {
+        "GETODDS_API_KEY": "$GETODDS_API_KEY"
+      }
+    }
+  },
+  "settings": [
+    {
+      "name": "API key",
+      "description": "GetOdds API key (free at https://getoddsapi.com). Leave empty to use only the keyless tools.",
+      "envVar": "GETODDS_API_KEY",
+      "sensitive": true
+    }
+  ]
+}
